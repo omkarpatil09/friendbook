@@ -1,0 +1,16 @@
+Please follow below steps in order to get this app running.
+1. Create a DB in MySQL named friend_book. 
+	DB Details are:
+	hostname:127.0.0.1
+	port:3306
+	user:root
+	password:root
+	Default Schema:friend_book
+2. Run the script file create-schema.sql present in the documentation folder.
+3. commit the DB
+4. The executable jar (maven built) is present in the target folder with name FriendBook-0.0.1.jar.
+5. After the DB is setup and the  tables are created, you can simply run the jar using the cmd, java -jar FriendBook-0.0.1.jar.
+6. The app can be accessed at http://localhost:8080/friendbook/v1/users/ by providing the username and password as basic auth using postman.
+7. The username and password for 2 users can be found in the create-schema.sql file.
+8. Swagger documentation can be accessed at http://localhost:8080/swagger-ui.html
+9. Swagger documentation JSON is present in friendbook-api-docs.json present in the documentation folder.
