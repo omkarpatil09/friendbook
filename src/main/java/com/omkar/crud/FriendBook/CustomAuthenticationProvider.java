@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -13,12 +15,14 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
 
+import com.omkar.crud.FriendBook.controllers.FriendBookController;
 import com.omkar.crud.FriendBook.entities.User;
 import com.omkar.crud.FriendBook.repositories.UserRepository;
 
 @Component
 public class CustomAuthenticationProvider implements AuthenticationProvider 
 {
+	Logger logger = LoggerFactory.getLogger(CustomAuthenticationProvider.class);
 	@Autowired
 	private UserRepository userRepository;
 
@@ -40,13 +44,13 @@ public class CustomAuthenticationProvider implements AuthenticationProvider
 	        }
 	        else
 	        {
-	        	System.out.println("Unauthorised!");
+	        	logger.debug("Unauthorised!");
 	        	return null;
 	        }
         }
         else
         {
-        	System.out.println("User not present!");
+        	logger.debug("User not present!");
         	return null;
         }
 
