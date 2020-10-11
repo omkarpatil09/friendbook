@@ -16,7 +16,7 @@ import com.omkar.crud.FriendBook.services.UserService;
 import com.omkar.crud.FriendBook.status.StatusHandler;
 
 
-@RestController
+//@RestController
 public class FriendBookController 
 {
 		
