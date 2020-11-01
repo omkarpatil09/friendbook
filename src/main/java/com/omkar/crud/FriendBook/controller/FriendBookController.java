@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -79,6 +80,23 @@ public class FriendBookController
 		if(user.isPresent())
 		{
 			MappingJacksonValue mapping = filterOutput(user.get());
+			return mapping;
+		}
+		else
+		{
+			throw new UserNotFoundException("Specified user not found : "+username);
+		}
+	}
+	
+	@DeleteMapping("/friendbook/v1/users/{username}")
+	public MappingJacksonValue deleteUser(@PathVariable String username)
+	{		
+		Optional<User> user = userRepository.findByUsername(username);
+		if(user.isPresent())
+		{
+			User fetchedUser = user.get();
+			userRepository.delete(fetchedUser);
+			MappingJacksonValue mapping = filterOutput(fetchedUser);
 			return mapping;
 		}
 		else
